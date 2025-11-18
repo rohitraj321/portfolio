@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rohit Raj | Portfolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<style>
+/* ------------------ Global ------------------ */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #0a0a0a, #000);
+  color: #e6e6e6;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  cursor: default;
+}
+
+/* ------------------ Navbar Right Vertical ------------------ */
+nav {
+  position: fixed;
+  top: 100px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 999;
+}
+nav a {
+  color: #aaa;
+  font-weight: 600;
+  transition: 0.3s;
+  text-decoration: none;
+  font-size: 18px;
+}
+nav a:hover, nav a.active { color: #39ff14; }
+
+/* ------------------ Header ------------------ */
+header {
+  padding: 50px 20px 50px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Profile pic */
+.profile-pic {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 5px solid #6fa8ff;
+  background-size: cover;
+  background-position: center;
+  margin: auto;
+  margin-bottom: 25px;
+  box-shadow: 0 0 30px #6fa8ff, 0 0 60px #8fc0ff;
+  animation: glowPulse 3s infinite ease-in-out;
+}
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 30px #6fa8ff, 0 0 60px #8fc0ff; }
+  50% { box-shadow: 0 0 60px #8fc0ff, 0 0 120px #6fa8ff; }
+  100% { box-shadow: 0 0 30px #6fa8ff, 0 0 60px #8fc0ff; }
+}
+
+/* Name */
+h1 {
+  font-size: 60px;
+  font-weight: 900;
+  margin: 10px 0;
+  color: #f5f5dc; /* light cream */
+}
+
+/* Subtitle gradient */
+.subtitle {
+  font-size: 24px;
+  margin-bottom: 20px;
+  display: block;
+  background: linear-gradient(90deg,#39ff14,#6fa8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: subtitleGradient 4s ease-in-out infinite;
+}
+@keyframes subtitleGradient {
+  0% { background-position:0% 50%; }
+  50% { background-position:100% 50%; }
+  100% { background-position:0% 50%; }
+}
+
+/* Sections */
+section {
+  max-width: 900px;
+  margin: auto;
+  padding: 60px 20px;
+  border-bottom: 1px solid #222;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeIn 1s forwards;
+}
+section:nth-of-type(1){animation-delay:0.3s;}
+section:nth-of-type(2){animation-delay:0.6s;}
+section:nth-of-type(3){animation-delay:0.9s;}
+section:nth-of-type(4){animation-delay:1.2s;}
+section:nth-of-type(5){animation-delay:1.5s;}
+@keyframes fadeIn { to { opacity:1; transform:translateY(0); } }
+
+h2 { font-size: 32px; margin-bottom: 25px; color: #6fa8ff; }
+
+/* ------------------ Skills ------------------ */
+.skills-marquee {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+.skills-track {
+  display: flex;
+  animation: scrollSkills 20s linear infinite;
+}
+.skills-track span {
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 7px;
+  border-radius: 10px;
+  border:1px solid #333;
+  color:#39ff14;
+  font-weight: 600;
+  flex-shrink: 0;
+  box-shadow:0 0 10px #000;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.skills-track span:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 20px #39ff14, 0 0 30px #6fa8ff;
+}
+@keyframes scrollSkills {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Projects */
+.project h3 { margin-top:0; color:#fff; }
+.project p { color: #39ff14; }
+.project { margin-bottom: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.project:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 0 25px #39ff14, 0 0 50px #6fa8ff; }
+
+/* ------------------ Resume & Contact ------------------ */
+.bottom-section {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+/* Resume title */
+.resume-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #6fa8ff;
+}
+
+/* Resume box */
+.resume-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+  width: 280px;
+  height: 280px;
+  border: 2px solid #6fa8ff;
+  border-radius: 20px;
+  background: #111;
+  color: #6fa8ff;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 0 10px #6fa8ff;
+  transition: 0.3s;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.resume-box i { font-size: 40px; }
+.resume-box.visible { animation: fadeInResume 1s forwards, floatResume 3s ease-in-out infinite; }
+@keyframes fadeInResume { to { opacity: 1; transform: translateY(0); } }
+@keyframes floatResume {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+.resume-box:hover {
+  background: #6fa8ff;
+  color: #000;
+  box-shadow: 0 0 10px #6fa8ff, 0 0 40px #6fa8ff;
+  transform: scale(1.05);
+}
+
+/* Contact icons */
+.bottom-contact {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.bottom-contact a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  color:#39ff14;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.bottom-contact a i { font-size: 24px; }
+.bottom-contact a:hover { transform: scale(1.1); color:#6fa8ff; }
+
+/* Neon cursor bubble */
+.bubble {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  background-color: #39ff14;
+  opacity: 0.7;
+  mix-blend-mode: screen;
+  z-index: 10000;
+  animation: bubbleFade 1s forwards;
+}
+@keyframes bubbleFade { 0% { transform: scale(0); opacity: 0.7; } 100% { transform: scale(1.5); opacity: 0; } }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#education">Education</a>
+</nav>
+
+<header>
+  <div class="profile-pic" style="background-image:url('profile_pic.jpg');"></div>
+  <h1>Rohit Raj</h1>
+  <span class="subtitle">Java Developer | CSE Student | Fresher</span>
+</header>
+
+<!-- Sections -->
+<section id="about">
+  <h2>About Me</h2>
+  <p>I am an enthusiastic fresher pursuing B.Tech in Computer Science and Engineering with strong skills in Java, C++, MySQL, DBMS, and DSA. I enjoy building real-world software projects and aim to grow as a Software Engineer.</p>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills-marquee">
+    <div class="skills-track">
+      <span>Java</span><span>C++</span><span>C</span><span>MySQL</span>
+      <span>DBMS</span><span>DSA</span><span>Operating Systems</span>
+      <span>PowerPoint</span><span>Excel</span>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="project">
+    <h3>Library Management System</h3>
+    <p>Developed using Java & MySQL. Manages books, issue/return, and secure data handling.</p>
+  </div>
+  <div class="project">
+    <h3>Hospital Management System</h3>
+    <p>Built patient record, scheduling, and billing system with database optimization.</p>
+  </div>
+</section>
+
+<section id="education">
+  <h2>Education</h2>
+  <p><strong>B.Tech CSE</strong> — AIET Jaipur (RTU) — CGPA: 8.7</p>
+  <p><strong>12th (BSEB)</strong> — 78.8%</p>
+  <p><strong>10th (CBSE)</strong> — 71.2%</p>
+</section>
+
+<!-- Bottom Section -->
+<div class="bottom-section">
+  <div class="resume-title">Resume</div>
+  <a href="Rohit_Resume.pdf" download class="resume-box" id="resumeBox">
+    <i class="fas fa-file-download"></i>
+    <span>View and download my Resume</span>
+  </a>
+  <div class="bottom-contact">
+    <a href="mailto:rajrohit28858@gmail.com"><i class="fas fa-envelope"></i> rajrohit28858@gmail.com</a>
+    <a href="tel:+917667881376"><i class="fas fa-phone"></i> +91 7667881376</a>
+    <a href="https://linkedin.com/in/rohit-raj-508215278" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    <a href="https://github.com/rohitraj321" target="_blank"><i class="fab fa-github"></i> Github</a>
+  </div>
+</div>
+
+<script>
+// Scroll spy
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if(pageYOffset >= sectionTop){ current = section.getAttribute('id'); }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if(link.getAttribute('href') === '#' + current){ link.classList.add('active'); }
+  });
+
+  // Resume box fade-in on scroll
+  const resumeBox = document.getElementById('resumeBox');
+  const boxTop = resumeBox.getBoundingClientRect().top;
+  const windowHeight = window.innerHeight;
+  if(boxTop < windowHeight - 80){ resumeBox.classList.add('visible'); }
+});
+
+// Neon cursor bubble
+document.addEventListener('mousemove', function(e){
+  let bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.style.left = e.pageX + 'px';
+  bubble.style.top = e.pageY + 'px';
+  bubble.style.width = bubble.style.height = (Math.random()*12 + 8) + 'px';
+  document.body.appendChild(bubble);
+  setTimeout(() => { bubble.remove(); }, 1000);
+});
+</script>
+
+</body>
+</html>
